@@ -1,6 +1,6 @@
 Trabalho de Grupo 3
 Elementos:
- -> AndrÃ© Oliveira 1161260
+ -> André Oliveira 1161260
  -> Jorge Gabriel. Azevedo 1160929
- -> Maria InÃªs Almeida 11606313
+ -> Maria Inês Almeida 1160631
  -> Mariana Guedes 1161592
