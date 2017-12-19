@@ -1,0 +1,14 @@
+#reset;
+#option solver gurobi; # v.d. inteiras
+#model ex1.mod; #modelo 
+#data ex1.dat; # dados
+expand; # verifica modelo com dados
+solve; # resolve
+
+# vê resultados obtidos
+display lucro;
+display x;
+expand TempDisp;
+display TempDisp.slack, TempDisp.ub;
+expand ProcMax;
+display ProcMax.slack, ProcMax.ub;
