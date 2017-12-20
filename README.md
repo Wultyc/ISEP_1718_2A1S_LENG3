@@ -1,6 +1,6 @@
-Trabalho do Grupo 3
-Elementos:\
-&nbsp;&nbsp;&nbsp;-> AndrÃ© Oliveira 1161260\
-&nbsp;&nbsp;&nbsp;-> Jorge Gabriel Azevedo 1160929\
-&nbsp;&nbsp;&nbsp;-> Maria InÃªs Almeida 1160631\
-&nbsp;&nbsp;&nbsp;-> Mariana Guedes 1161592
+Trabalho do Grupo 3->
+Elementos:
+André Oliveira 1161260
+Jorge Gabriel Azevedo 1160929
+Maria Inês Almeida 1160631
+Mariana Guedes 1161592
