@@ -63,13 +63,13 @@ public class AMPLConn {
         NeosClient client = new NeosClient("https://neos-server.org", "3333");
 
         /* Create job XML */
-        NeosJobXml ncoJob = new NeosJobXml("socp", "Gurobi", "AMPL");
-        ncoJob.addParam("model", model);
-        ncoJob.addParam("data", data);
-        ncoJob.addParam("commands", run);
+        NeosJobXml amplJob = new NeosJobXml("socp", "Gurobi", "AMPL");
+        amplJob.addParam("model", model);
+        amplJob.addParam("data", data);
+        amplJob.addParam("commands", run);
 
         /* Submit job to NEOS */
-        NeosJob job = client.submitJob(ncoJob.toXMLString());
+        NeosJob job = client.submitJob(amplJob.toXMLString());
 
         /* Print result */
         System.out.println(job.getResult());
