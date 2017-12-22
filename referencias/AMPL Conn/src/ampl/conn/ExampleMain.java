@@ -24,14 +24,12 @@ public class ExampleMain {
 
         /* create NeosJobXml object exJob with problem type nco for nonlinearly */
         /* constrained optimization, KNITRO for the solver, GAMS for the input */
-        //NeosJobXml exJob = new NeosJobXml("lp", "Gurobi", "AMPL");
-        NeosJobXml exJob = new NeosJobXml("lp", "CPLEX", "AMPL");
+        NeosJobXml exJob = new NeosJobXml("lp", "Gurobi", "AMPL");
 
 
         /* create FileUtils object to facilitate reading model file ChemEq.txt */
         /* into a string called example */
-        //FileUtils fileUtils = FileUtils.getInstance(FileUtils.APPLICATION_MODE);
-        //String example = fileUtils.readFile("ChemEq.txt");
+
         /* add contents of string example to model field of job XML */
         exJob.addParam("model", model);
         exJob.addParam("data", data);
