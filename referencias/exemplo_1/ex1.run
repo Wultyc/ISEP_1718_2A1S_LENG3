@@ -4,8 +4,7 @@
 #data ex1.dat; # dados
 expand; # verifica modelo com dados
 solve; # resolve
-
-# vê resultados obtidos
+# ve resultados obtidos
 display lucro;
 display x;
 expand TempDisp;

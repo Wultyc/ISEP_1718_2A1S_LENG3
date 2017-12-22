@@ -21,12 +21,14 @@ public class ExampleMainAdvanced {
 
         String run = ficheiros.getRun();
 
+        System.out.println(model + "\n" + data + "\n" + run);
+        
         /* create NeosXmlRpcClient object with server information */
         NeosXmlRpcClient client = new NeosXmlRpcClient(HOST, PORT);
 
         /* create NeosJobXml object exJob with problem type nco for nonlinearly */
         /* constrained optimization, KNITRO for the solver, GAMS for the input */
-        NeosJobXml exJob = new NeosJobXml("lp", "Gurobi", "AMPL");
+        NeosJobXml exJob = new NeosJobXml("lp", "CPLEX", "AMPL");
 
         /* create FileUtils object to facilitate reading model file ChemEq.txt */
         /* into a string called example */
@@ -37,6 +39,7 @@ public class ExampleMainAdvanced {
         exJob.addParam("model", model);
         exJob.addParam("data", data);
         exJob.addParam("commands", run);
+        exJob.addParam("email", "1160929@isep.ipp.pt");
         /* convert job XML to string and add it to the parameter vector */
         Vector params = new Vector();
         String jobString = exJob.toXMLString();
