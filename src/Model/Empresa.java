@@ -31,7 +31,7 @@ public class Empresa {
     private void fillInData() {
         // Dados de Teste
         //Preenche alguns Colaboradores
-        for (Integer i = 1; i <= 4; i++) {
+        for (Integer i = 1; i <= 10; i++) {
             addColaborador(new Colaborador(i, "Colaborador: " + i.toString()));
         }
 
