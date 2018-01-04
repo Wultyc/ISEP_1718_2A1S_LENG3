@@ -14,16 +14,16 @@ import java.util.List;
  */
 public class Empresa {
 
-    private RegistoEntidades ListaEntidades;
+    private List<Entidade> ListaEntidades;
     private List<Colaborador> m_lstColaboradores;
-    private RegistoArmazens ListaArmazens;
-    private RegistoFNP ListaFNP;
+    private List<Armazem> ListaArmazens;
+    private List<FNP> ListaFNP;
 
     public Empresa() {
-        this.m_lstColaboradores = new ArrayList<>();
-        this.setListaEntidades(new RegistoEntidades());
-        this.setListaArmazens(new RegistoArmazens());
-        this.setListaFNP(new RegistoFNP());
+        this.m_lstColaboradores = new ArrayList<Colaborador>();
+        this.ListaEntidades = new ArrayList<Entidade>();
+        this.ListaArmazens = new ArrayList<Armazem>();
+        this.ListaFNP = new ArrayList<FNP>();
 
         fillInData();
     }
@@ -50,31 +50,31 @@ public class Empresa {
 
     /**************************** Entidades ************************************/
 
-    public RegistoEntidades getListaEntidades() {
-        return ListaEntidades;
+    public List<Entidade> getListaEntidades() {
+        return this.ListaEntidades;
     }
 
-    public void setListaEntidades(RegistoEntidades ListaEntidades) {
-        this.ListaEntidades = ListaEntidades;
+    public boolean addEntidades(Entidade ent) {
+        return this.ListaEntidades.add(ent);
     }
 
     /**************************** Armazens ************************************/
 
-    public RegistoArmazens getListaArmazens() {
+    public List<Armazem> getListaArmazens() {
         return ListaArmazens;
     }
 
-    public void setListaArmazens(RegistoArmazens ListaArmazens) {
-        this.ListaArmazens = ListaArmazens;
+    public boolean setListaArmazens(Armazem arm) {
+        return this.ListaArmazens.add(arm);
     }
 
     /***************************** FNP ****************************************/
 
-    public RegistoFNP getListaFNP() {
+    public List<FNP> getListaFNP() {
         return ListaFNP;
     }
 
-    public void setListaFNP(RegistoFNP ListaFNP) {
-        this.ListaFNP = ListaFNP;
+    public boolean setListaFNP(FNP fnp) {
+        return this.ListaFNP.add(fnp);
     }
 }
