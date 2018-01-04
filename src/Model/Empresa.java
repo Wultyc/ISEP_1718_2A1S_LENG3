@@ -34,8 +34,7 @@ public class Empresa {
         for (Integer i = 1; i <= 10; i++) {
             addColaborador(new Colaborador(i, "Colaborador: " + i.toString()));
         }
-
-        //Preencher outros dados aqui
+        ListaArmazens.add(new Armazem());
     }
     
     /************************* Colaboradores **********************************/
