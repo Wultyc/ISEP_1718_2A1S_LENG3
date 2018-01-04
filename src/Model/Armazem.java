@@ -12,6 +12,7 @@ import java.util.List;
  * @author jorge
  */
 public class Armazem {
+
     private String codUn;
     private String descr;
     private EndPostal endPostal;
@@ -21,20 +22,21 @@ public class Armazem {
     private Colaborador diretor;
     private List<Colaborador> chefes;
 
-    public void Armazem(){
+    public void Armazem() {
         this.codUn = null;
         this.descr = null;
         this.endPostal = new EndPostal();
         this.coordGPS = new CoordGPS();
     }
     
-    public void Armazem(String codUn, String descr, String endPostalL1, String endPostalL2, int endPostal_cpCidade, int endPostal_cpRua, int latd, int longt, int altd){
+
+    public Armazem(String codUn, String descr, String endPostalL1, String endPostalL2, int endPostal_cpCidade, int endPostal_cpRua, double latd, double longt, double altd) {
         this.codUn = codUn;
         this.descr = descr;
         this.endPostal = new EndPostal(endPostalL1, endPostalL2, endPostal_cpCidade, endPostal_cpRua);
         this.coordGPS = new CoordGPS(latd, longt, altd);
     }
-    
+
     public void setCodUn(String codUn) {
         this.codUn = codUn;
     }
@@ -50,17 +52,33 @@ public class Armazem {
         this.endPostal.setCp_rua(endPostal_cpRua);
     }
 
-    public void setCoordGPS(int latd, int longt, int altd) {
+    public void setCoordGPS(double latd, double longt, double altd) {
         this.coordGPS.setLatitude(latd);
         this.coordGPS.setLongitude(longt);
         this.coordGPS.setAltitude(altd);
     }
 
+    public void setPlanta(PlantaArmazem planta) {
+        this.planta = planta;
+    }
+
+    public PlantaArmazem getPlanta() {
+        return this.planta;
+    }
+    
+     public void addAGV(AGV agv) {
+        this.agvs.add(agv);
+    }
+
+    public List<AGV> getAGVs() {
+        return this.agvs;
+    }
+    
     public boolean isIdentifiableAs(String sCodigo) {
         return this.codUn.equals(sCodigo);
     }
 
-    public boolean valida(){
+    public boolean valida() {
         return true;
     }
 

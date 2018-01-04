@@ -5,8 +5,13 @@ public class Setor {
     private String designacao;
     private Ocupacao estado;
 
-    public Setor(){
+    public Setor() {
         this.setDesignacao("");
+        this.setEstado(new Ocupacao());
+    }
+
+    public Setor(String desig) {
+        this.setDesignacao(desig);
         this.setEstado(new Ocupacao());
     }
 
@@ -25,6 +30,7 @@ public class Setor {
     public void setEstado(Ocupacao estado) {
         this.estado = estado;
     }
+
     @Override
     public String toString() {
         return "Designação: " + this.designacao + "\n" + this.estado.toString();

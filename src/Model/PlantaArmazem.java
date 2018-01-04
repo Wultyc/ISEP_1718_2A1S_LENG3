@@ -45,5 +45,10 @@ public class PlantaArmazem {
         this.espacos.add(espacos);
     }
 
-
+    public void addCorredores(CorredorArmazem corredor) {
+        this.corredores.add(corredor);
+    }
+    public List<CorredorArmazem> getCorredores() {
+        return this.corredores;
+    }
 }
