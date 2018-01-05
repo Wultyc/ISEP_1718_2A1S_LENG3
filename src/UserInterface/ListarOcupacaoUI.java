@@ -1,5 +1,7 @@
 package UserInterface;
 import java.util.Scanner;
+import model.Empresa;
+import utils.Utils;
 
 /**
  *
@@ -7,24 +9,26 @@ import java.util.Scanner;
  */
 public class ListarOcupacaoUI {
     
+    Empresa e;
          
-    public static void main(String[] args) {
+    public void main(Empresa e) {
         
-        String armazem;
-        double areaLogica, corredor;
+        //Recebe o objeto da classe empresa
+        this.e = e;
         
-        Scanner sc = new Scanner(System.in);    
+        Utils u = new Utils();
+        
+        String armazem, areaLogica, corredor;
+        
+            
         //Listar armazens
-        System.out.println("Especifique Armazém: ");
-        armazem = sc.next();
+        armazem = u.readLineFromConsole("Especifique Armazém: ");
         
         //Listar Areas Logicas
-        System.out.println("Especifique Aréa Lógica: ");
-        areaLogica = sc.nextDouble();
+        areaLogica = u.readLineFromConsole("Especifique Aréa Lógica: ");
         
         //Listar Corredores
-        System.out.println("Especifique Corredor: ");
-        corredor = sc.nextDouble();
+        corredor = u.readLineFromConsole("Especifique Corredor: ");
         
         //Listar Ocupação
     }

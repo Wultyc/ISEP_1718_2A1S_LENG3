@@ -5,6 +5,7 @@
  */
 package UserInterface;
 import java.util.Scanner;
+import utils.Utils;
 
 /**
  *
@@ -14,10 +15,10 @@ public class OtimizarAtualizarGestaoUI {
     
     public static void main(String[] args) {
         
+        Utils u = new Utils();
+        
         String armazem, alteracoes;
         double areaLogica, corredor;
-        
-        Scanner sc = new Scanner(System.in);
         
         //Listar armazens
         System.out.println("Especifique Armazém: ");

@@ -1,14 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
-/**
- *
- * @author DEE
- */
+import java.util.List;
+import model.Armazem;
+import model.Empresa;
+
+
 public class ListarOcupacaoController {
     
+    Empresa e;
+    
+    public ListarOcupacaoController(){
+        e = null;
+    }
+    
+    public ListarOcupacaoController(Empresa e){
+        this.e = e;
+    }
+    
+    public List<Armazem> getListaArmazens() {
+        
+        return e.getListaArmazens();
+    }
 }

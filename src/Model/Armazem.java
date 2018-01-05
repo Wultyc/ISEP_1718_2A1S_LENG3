@@ -22,7 +22,7 @@ public class Armazem {
     private Colaborador diretor;
     private List<Colaborador> chefes;
 
-    public void Armazem() {
+    public Armazem() {
         this.codUn = null;
         this.descr = null;
         this.endPostal = new EndPostal();
