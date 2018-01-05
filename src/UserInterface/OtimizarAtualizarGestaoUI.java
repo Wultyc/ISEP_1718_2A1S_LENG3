@@ -17,27 +17,22 @@ public class OtimizarAtualizarGestaoUI {
         
         Utils u = new Utils();
         
-        String armazem, alteracoes;
-        double areaLogica, corredor;
+        String armazem, alteracoes, areaLogica, corredor;
         
         //Listar armazens
-        System.out.println("Especifique Armazém: ");
-        armazem = sc.next();
+        armazem = u.readLineFromConsole("Especifique CArmazem: ");
         
         //Listar Areas Logicas
-        System.out.println("Especifique Aréa Lógica: ");
-        areaLogica = sc.nextDouble();
+        areaLogica = u.readLineFromConsole("Especifique Area Logica: ");
         
         //Listar Corredores
-        System.out.println("Especifique Corredor: ");
-        corredor = sc.nextDouble();        
+        corredor = u.readLineFromConsole("Especifique Corredor: ");        
         
         //Confere condições para o uso do AMPL
         
         //Envia os dados para o servidor 
         
-        System.out.println("Pretende aplicar alterações ?");
-        alteracoes = sc.next();
+        alteracoes = u.readLineFromConsole("Pretende aplicar alterações ?");
         
         //Se sim -> sistema aplica alteracções
         
