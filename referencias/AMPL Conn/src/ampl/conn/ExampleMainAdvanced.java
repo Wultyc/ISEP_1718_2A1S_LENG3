@@ -1,5 +1,6 @@
 package ampl.conn;
 
+import java.text.Normalizer;
 import java.util.Vector;
 
 import org.apache.xmlrpc.XmlRpcException;
@@ -14,6 +15,8 @@ public class ExampleMainAdvanced {
     private static final String PORT = "3333";
 
     public static void main(String[] args) {
+        int infoStart = 0;
+        String resultRefinado = "", result_normalized = "";
 
         String model = ficheiros.getModel();
 
@@ -21,21 +24,18 @@ public class ExampleMainAdvanced {
 
         String run = ficheiros.getRun();
 
-        System.out.println(model + "\n" + data + "\n" + run);
-        
         /* create NeosXmlRpcClient object with server information */
         NeosXmlRpcClient client = new NeosXmlRpcClient(HOST, PORT);
 
         /* create NeosJobXml object exJob with problem type nco for nonlinearly */
-        /* constrained optimization, KNITRO for the solver, GAMS for the input */
+ /* constrained optimization, KNITRO for the solver, GAMS for the input */
         NeosJobXml exJob = new NeosJobXml("lp", "CPLEX", "AMPL");
 
         /* create FileUtils object to facilitate reading model file ChemEq.txt */
-        /* into a string called example */
+ /* into a string called example */
         //FileUtils fileUtils = FileUtils.getInstance(FileUtils.APPLICATION_MODE);
         //String example = fileUtils.readFile("ChemEq.txt");
         /* add contents of string example to model field of job XML */
-        
         exJob.addParam("model", model);
         exJob.addParam("data", data);
         exJob.addParam("commands", run);
@@ -57,20 +57,23 @@ public class ExampleMainAdvanced {
             /* get returned values of job number and job password */
             currentJob = (Integer) results[0];
             currentPassword = (String) results[1];
-            System.out.println("submitted" + results);
+            //System.out.println("submitted" + results);
 
             /* initialize receiver and start output monitoring */
             JobReceiver jobReceiver = new JobReceiver();
-            ResultReceiver receiver = new ResultReceiver(client, jobReceiver,
-                    currentJob, currentPassword);
+            ResultReceiver receiver = new ResultReceiver(client, jobReceiver, currentJob, currentPassword);
             receiver.run();
 
-            System.out.println(receiver.getResult());
+            result = receiver.getResult();
+
+            /* print results to standard output*/ 
+            infoStart = result.indexOf("InicioResultadoLENG3");
+            resultRefinado = result.substring(infoStart) + 21;
+            System.out.println(resultRefinado);
+            //System.out.println(result);
         } catch (XmlRpcException e) {
             System.out.println("Error submitting job :" + e.getMessage());
             return;
         }
-        /* print results to standard output */
-        System.out.println(result);
     }
 }

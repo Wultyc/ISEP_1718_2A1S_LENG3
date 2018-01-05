@@ -5,25 +5,29 @@
  */
 package ampl.conn;
 
+import java.text.Normalizer;
 import org.neos.client.FileUtils;
 
 public class ficheiros {
 
     public static String getModel() {
         FileUtils fileUtils = FileUtils.getInstance(FileUtils.APPLICATION_MODE);
-        String mod = fileUtils.readFile("ex1.mod");
-        return mod;
+        String mod = fileUtils.readFile("LENG3.mod");
+        String normalized_mod = Normalizer.normalize(mod, Normalizer.Form.NFD);
+        return normalized_mod;
     }
 
     public static String getData() {
         FileUtils fileUtils = FileUtils.getInstance(FileUtils.APPLICATION_MODE);
-        String data = fileUtils.readFile("ex1.dat");
-        return data;
+        String data = fileUtils.readFile("LENG3.dat");
+        String normalized_data = Normalizer.normalize(data, Normalizer.Form.NFD);
+        return normalized_data;
     }
 
     public static String getRun() {
         FileUtils fileUtils = FileUtils.getInstance(FileUtils.APPLICATION_MODE);
-        String run = fileUtils.readFile("ex1.run");
-        return run;
+        String run = fileUtils.readFile("LENG3.run");
+        String normalized_run = Normalizer.normalize(run, Normalizer.Form.NFD);
+        return normalized_run;
     }
 }

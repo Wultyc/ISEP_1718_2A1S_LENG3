@@ -8,6 +8,6 @@ public class JobReceiver implements ResultCallback {
       System.out.println("Password   : " + pass);
    }	
    public void handleFinalResult(String results) {
-      System.out.println(results);
+      //System.out.println(results);
    }
 }

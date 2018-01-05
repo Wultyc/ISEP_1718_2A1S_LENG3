@@ -1,12 +1,12 @@
-# parâmetros 
-param I:= 20; #Numero de posições na baia
+# parametros 
+param I:= 20; #Numero de posicoes na baia
 param J:= 2; #Numero de baias
 param K:= 3; #Numero de niveis
 param trec := 5; #tempo de recolha
 param tsub := 5; #tempo de subida
 param tdes := 5; #tempo de descarga
 param vagv := 0.5; #velocidade do agv
-param da := 4; #distância do ponto de recolha à baia 
+param da := 4; #distancia do ponto de recolha a baia 
 param N := 5; #Tamanho da encomenda 
 param A default 0 :=
 1 1 1 0
@@ -50,6 +50,6 @@ param v default 0 :=
 3 2 3 20180101
 ;
 
-#variáveis 
+#variaveis 
 var x default 0;
 var y default 0;
