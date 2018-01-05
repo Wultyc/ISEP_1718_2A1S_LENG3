@@ -7,8 +7,8 @@ public class CatAGV {
     private String desig;
     private int autonomia;
     private int tCarga;
-    private float pMax;
-    private float AlturaM;
+    private double pMax;
+    private double AlturaM;
 
        
     public CatAGV(){
@@ -18,7 +18,7 @@ public class CatAGV {
         this.setAlturaM(0);
     }
     
-    public CatAGV(int autonomia, int tCarga, float pMax, float AlturaM){
+    public CatAGV(int autonomia, int tCarga, double pMax, double AlturaM){
         this.setAutonomia(autonomia);
         this.settCarga(tCarga);
         this.setpMax(pMax);
@@ -46,12 +46,12 @@ public class CatAGV {
     }
 
 
-    public void setpMax(float pMax) {
+    public void setpMax(double pMax) {
         this.pMax = pMax;
     }
 
 
-    public void setAlturaM(float AlturaM) {
+    public void setAlturaM(double AlturaM) {
         this.AlturaM = AlturaM;
     }
 

@@ -5,11 +5,14 @@
  */
 package model;
 
+import java.util.List;
+
 
 public class CorredorArmazem {
     private PontoEspaco pontoA;
     private PontoEspaco pontoB;
     private String designacao; 
+    private List<Setor> setores;
     
     public CorredorArmazem(){
         pontoA = new PontoEspaco();
@@ -40,6 +43,13 @@ public class CorredorArmazem {
 
     public void setDesignacao(String designacao) {
         this.designacao = designacao;
+    }
+    
+    public void addSetor(Setor s){
+        this.setores.add(s);
+    }
+    public List<Setor> getSetores(){
+        return this.setores;
     }
 
     @Override

@@ -10,9 +10,9 @@ package model;
  * @author gabriel
  */
 public class CoordGPS {
-    private float latitude;
-    private float longitude;
-    private float altitude;
+    private double latitude;
+    private double longitude;
+    private double altitude;
 
     public CoordGPS(){
         this.latitude = 0;
@@ -20,24 +20,24 @@ public class CoordGPS {
         this.altitude = 0;
     }
     
-    public CoordGPS(int latitude, int longitude, int altitude){
+    public CoordGPS(double latitude, double longitude, double altitude){
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
     }
     
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
 
-    public void setAltitude(float altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 

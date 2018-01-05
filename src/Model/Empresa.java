@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,8 +35,37 @@ public class Empresa {
         for (Integer i = 1; i <= 10; i++) {
             addColaborador(new Colaborador(i, "Colaborador: " + i.toString()));
         }
-
-        //Preencher outros dados aqui
+        
+        //Armazem
+        ListaArmazens.add(new Armazem("AR30", "ARM LENG3", "Rua Dr. Antonio Bernardino de Almeida", "N 431", 4200, 072, 41.17, -8.59, 50));
+        ListaArmazens.get(0).setPlanta(new PlantaArmazem());
+        ListaArmazens.get(0).getPlanta().setLargura(20);
+        ListaArmazens.get(0).getPlanta().setAltura(10);
+        ListaArmazens.get(0).getPlanta().setComprimento(50);
+        ListaArmazens.get(0).getPlanta().addCorredores(new CorredorArmazem("C12", 1000, 500, 0, 1210, 2900, 0));
+        for(int i = 1; i<=20; i++){
+            for(int j = 1; j <= 2; j++){
+                for(int k = 1; k <= 3; k++){
+                    ListaArmazens.get(0).getPlanta().getCorredores().get(0).addSetor(new Setor("S"+i+j+k));
+                }
+            }
+        }
+        ListaArmazens.get(0).addAGV(new AGV(new Date(12, 10, 2003), "KJ53", 8, 2, 100.0, 1.0));
+        
+        //Entidade
+        ListaEntidades.add(new Entidade("ent1", "gitsubishi inc", "gitsubishi", "123456789", "Rua Dr. António Bernardino de Almeida, nº 431, 4200-072, Porto", "gitsubishi@gitsubishi.com", m_lstColaboradores.get(2)));
+        
+        //FNP
+        ListaFNP.add(new FNP("ent1", "leite a vaca feliz", "leite", "", "liquido",new Date(2018,02,05), 10));
+        ListaFNP.add(new FNP("ent1", "ovos a galinha que canta", "ovo", "", "solido", new Date(2018,02,05), 5));
+        ListaFNP.add(new FNP("ent1", "fruta pomar saudavel", "fruta", "", "solido", new Date(2018,02,05), 10));
+        ListaFNP.add(new FNP("ent1", "aspiradores tudo limpo", "aspiradores", "", "solido", null, 10));
+        ListaFNP.add(new FNP("ent1", "parafusos sempre fixo", "parafusos", "", "solido", null, 10));
+        ListaFNP.add(new FNP("ent1", "porcas ferragens e ca", "porcas", "", "solido", null, 10));
+        ListaFNP.add(new FNP("ent1", "alface pomar saudavel", "alface", "", "solido", new Date(2018,02,05), 5));
+        ListaFNP.add(new FNP("ent1", "tomate pomar saudavel", "tomate", "", "solido", new Date(2018,02,05), 5));
+        ListaFNP.add(new FNP("ent1", "chouriços enchidos da ericeira", "chouriços", "", "solido",new Date(2018,02,05) , 10));
+        ListaFNP.add(new FNP("ent1", "smartphones ching-ling", "smatphones", "", "solido", null, 10));
     }
     
     /************************* Colaboradores **********************************/

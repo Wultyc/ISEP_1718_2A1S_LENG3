@@ -9,13 +9,13 @@ public class AGV {
     private String nSerie;
     private CatAGV cat;
 
-    private void AGV() {
+    public AGV() {
         this.dAquisicao = new Date();
         this.nSerie = "";
         this.cat = new CatAGV();
     }
 
-    private void AGV(Date dAquisicao, String nSerie, int autonomia, int tCarga, float pMax, float AlturaM) {
+    public AGV(Date dAquisicao, String nSerie, int autonomia, int tCarga, double pMax, double AlturaM) {
         this.dAquisicao = dAquisicao;
         this.nSerie = nSerie;
         this.cat = new CatAGV(autonomia, tCarga, pMax, AlturaM);
