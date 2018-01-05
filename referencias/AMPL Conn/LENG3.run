@@ -1,0 +1,13 @@
+reset;
+option solver cplex;
+
+model LENG3.mod;
+data LENG3.dat;
+
+expand;
+solve;
+
+# resultados obtidos
+print '$res#'; #String indicativa do Inicio da Informação do resultado
+display Z; # Tempo de execução
+display x; # Resultado final da otimização
