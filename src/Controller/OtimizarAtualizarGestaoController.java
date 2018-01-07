@@ -122,11 +122,11 @@ public class OtimizarAtualizarGestaoController {
         }
 
         feedbackIntrepetacao = processaString(); //Processa a String
-        
+
         if (feedbackIntrepetacao == false) { //Ser ocurrer um erro para por aqui a execução
             return false;
         }
-        
+
         gerarArmazem(); //Converte a String matriz num armazem
 
         return true;
@@ -183,11 +183,11 @@ public class OtimizarAtualizarGestaoController {
         StringLimpa = limpaString(this.respostaNEOS);
         this.z = encontraZ(StringLimpa);
         this.StringMatriz = limpaZ(StringLimpa);
-        
+
         //Despista algum erro na conversão
-        if(this.z == -1 || this.StringMatriz.equals("")){
+        if (this.z == -1 || this.StringMatriz.equals("")) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
@@ -224,34 +224,35 @@ public class OtimizarAtualizarGestaoController {
 
     public void gerarArmazem() {
         int pos1, pos2, pos3, pos4;
-        int i, j, k1, k2,k3;
-        String s1, s2;
+        int i, j, k;
+        int[] posK = new int[3];
+        int[] posKbase = {5, 9, 13};
+        String s1, s2, c;
         String[] matrizes = new String[2];
-        
+
         s1 = this.StringMatriz;
-        
-        pos1 = s1.indexOf(":=\n")+3;
-        pos2 = s1.indexOf("\n [*,2,*]\n")-1;
+
+        pos1 = s1.indexOf(":=\n") + 3;
+        pos2 = s1.indexOf("\n [*,2,*]\n") - 1;
         matrizes[0] = s1.substring(pos1, pos2);
-        
+
         s2 = s1.substring(pos2);
-        pos3 = s2.indexOf(":=\n")+3;
-        pos4 = s2.indexOf(";")-1;
+        pos3 = s2.indexOf(":=\n") + 3;
+        pos4 = s2.indexOf(";") - 1;
         matrizes[1] = s2.substring(pos3, pos4);
-        
-        for(i=0;i<20;i++){
-            k1 = 5 + 15*i;
-            k2 = 9 + 15*i;
-            k3 = 13 + 15*i;
-            for(j=0;j<2;j++){
-                armazem[i][j][0] = Integer.parseInt(matrizes[j].substring(k1, k1+1));
-                armazem[i][j][1] = Integer.parseInt(matrizes[j].substring(k2, k2+1));
-                armazem[i][j][2] = Integer.parseInt(matrizes[j].substring(k3, k3+1));
+
+        for (i = 0; i < 20; i++) {
+            for (j = 0; j < 2; j++) {
+                for (k = 0; k < 3; k++) {
+                    posK[k] = posKbase[k] + 15 * i;
+                    c = matrizes[j].substring(posK[k], posK[k] + 1);
+                    armazem[i][j][k] = Integer.parseInt(c);
+                }
             }
         }
     }
-    
-    public void aplicaArmazem(){
+
+    public void aplicaArmazem() {
         
     }
 }
