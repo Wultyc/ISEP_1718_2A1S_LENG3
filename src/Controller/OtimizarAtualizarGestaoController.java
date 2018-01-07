@@ -9,6 +9,7 @@ import model.CorredorArmazem;
 import model.Empresa;
 import model.EspacoArmazem;
 import model.FNP;
+import model.Ocupacao;
 import model.PlantaArmazem;
 import org.apache.xmlrpc.XmlRpcException;
 import org.neos.client.NeosJobXml;
@@ -313,6 +314,17 @@ public class OtimizarAtualizarGestaoController {
     }
 
     public void aplicaArmazem() {
-
+        int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
+        Ocupacao estado;
+        for (i = 0; i < 20; i++) {
+            for (j = 0; j < 2; j++) {
+                for (k = 0; k < 3; k++) {
+                    setorPos++;
+                    estado = this.corredor.getSetores().get(setorPos).getEstado();
+                    estado.setOcupado(false);
+                    estado.setProduto(null);
+                }
+            }
+        }
     }
 }
