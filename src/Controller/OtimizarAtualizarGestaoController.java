@@ -1,12 +1,15 @@
 package Controller;
 
+import java.util.Date;
 import java.util.Vector;
 import jdk.nashorn.internal.codegen.CompilerConstants;
+import model.AGV;
 import model.Armazem;
 import model.CorredorArmazem;
 import model.Empresa;
 import model.EspacoArmazem;
 import model.FNP;
+import model.PlantaArmazem;
 import org.apache.xmlrpc.XmlRpcException;
 import org.neos.client.NeosJobXml;
 import org.neos.client.NeosXmlRpcClient;
@@ -19,8 +22,10 @@ public class OtimizarAtualizarGestaoController {
     private Armazem a;
     private EspacoArmazem areaLogica;
     private CorredorArmazem corredor;
+    private AGV agv;
     private FNP fnp;
     private int quantidade;
+    private int quantidadeMax;
     private String run;
     private String model;
     private String data;
@@ -74,6 +79,14 @@ public class OtimizarAtualizarGestaoController {
         this.corredor = corredor;
     }
 
+    public AGV getAGV() {
+        return this.agv;
+    }
+
+    public void setAGV(AGV agv) {
+        this.agv = agv;
+    }
+
     public FNP getFnp() {
         return fnp;
     }
@@ -90,12 +103,59 @@ public class OtimizarAtualizarGestaoController {
         this.quantidade = quantidade;
     }
 
-    public boolean validaQuantidade(int qnt) {
-        return true;
+    public boolean validaQuantidade() {
+        if (this.quantidade > this.quantidadeMax) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public String genData() {
-        return "";
+        String data = "", a = "", v = "";
+        int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
+        boolean ocupacao, produto; 
+        Date tmpDate;
+        
+        data = "# parametros \n"
+                + "param I:= 20; #Numero de posicoes na baia\n"
+                + "param J:= 2; #Numero de baias\n"
+                + "param K:= 3; #Numero de niveis\n"
+                + "param trec := 5; #tempo de recolha\n"
+                + "param tsub := 5; #tempo de subida\n"
+                + "param tdes := 5; #tempo de descarga\n"
+                + "param da := 4; #distancia do ponto de recolha a baia\n";
+        data += "param vagv := " + this.agv.getCat().getVelocidade() + "; #velocidade do agv\n";
+        data += "param N := " + this.quantidade + "; #Tamanho da encomenda\n";
+        a = "param A default 0 :=\n";
+        v = "param v default 0 :=\n";
+        for (i = 0; i < 20; i++) {
+            for (j = 0; j < 2; j++) {
+                for (k = 0; k < 3; k++) {
+                    setorPos++;
+                    ocupacao = this.corredor.getSetores().get(setorPos).getEstado().isOcupado();
+                    produto = this.corredor.getSetores().get(setorPos).getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
+                    if(ocupacao && produto){
+                        tmpBin = 1;
+                        tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
+                        tmpData = tmpDate.getYear()*10000 + tmpDate.getMonth()*100 + tmpDate.getDay();
+                    } else {
+                        tmpBin = 0;
+                        tmpDate = null;
+                        tmpData = 0;
+                    }
+                    a += ""+i+j+k+" "+tmpBin+"\n";
+                    v += ""+i+j+k+" "+tmpData+"\n";
+                }
+            }
+        }
+        a += ";\n";
+        v += ";\n";
+        data += a + v;
+        data += "#variaveis \n"
+                + "var x default 0;\n"
+                + "var y default 0;";
+        return data;
     }
 
     public boolean inciaOtimizacao() {
@@ -103,7 +163,7 @@ public class OtimizarAtualizarGestaoController {
         this.model = u.loadTextFile(this.caminhoModel);
         this.run = u.loadTextFile(this.caminhoRun);
         this.data = genData();
-        if (validaQuantidade(this.quantidade)) {
+        if (validaQuantidade()) {
             return true;
         } else {
             return false;
@@ -253,6 +313,6 @@ public class OtimizarAtualizarGestaoController {
     }
 
     public void aplicaArmazem() {
-        
+
     }
 }
