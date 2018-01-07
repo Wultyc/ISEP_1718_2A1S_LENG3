@@ -8,12 +8,14 @@ package utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.neos.client.FileUtils;
 
 /**
  *
@@ -121,5 +123,11 @@ public class Utils
                 //Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (true);
+    }
+    public static String loadTextFile(String filename){
+        FileUtils fileUtils = FileUtils.getInstance(FileUtils.APPLICATION_MODE);
+        String mod = fileUtils.readFile(filename);
+        String normalized_mod = Normalizer.normalize(mod, Normalizer.Form.NFD);
+        return normalized_mod;
     }
 }
