@@ -33,19 +33,38 @@ public class OtimizarAtualizarGestaoController {
     private String respostaNEOS;
     private int z;
     private String StringMatriz;
-    private int[][][] armazem = new int[20][2][3];
+    private int[][][] armazem;
 
-    private final String caminhoRun = "LENG3.run";
-    private final String caminhoModel = "LENG3.mod";
-    private static final String HOST = "neos-server.org";
-    private static final String PORT = "3333";
+    private final String caminhoRun = "modelo/LENG3.run";
+    private final String caminhoModel = "modelo/LENG3.mod";
+    private final String HOST = "neos-server.org";
+    private final String PORT = "3333";
 
     public OtimizarAtualizarGestaoController() {
-
+        this.e = null;
+        this.a = null;
+        this.areaLogica = null;
+        this.corredor = null;
+        this.agv = null;
+        this.fnp = null;
+        this.quantidade = 0;
+        this.quantidadeMax = 0;
+        this.run = "";
+        this.model = "";
+        this.data = "";
+        this.respostaNEOS = "";
+        this.z = 0;
+        this.StringMatriz = "";
+        this.armazem = new int[20][2][3];
     }
 
-    public OtimizarAtualizarGestaoController(Empresa e) {
+    public OtimizarAtualizarGestaoController(Empresa e, Armazem a, EspacoArmazem areaLogica, CorredorArmazem corredor, AGV agv, FNP fnp) {
         this.e = e;
+        this.a = a;
+        this.areaLogica = areaLogica;
+        this.corredor = corredor;
+        this.agv = agv;
+        this.fnp = fnp;
     }
 
     public Empresa getE() {
@@ -115,9 +134,9 @@ public class OtimizarAtualizarGestaoController {
     public String genData() {
         String data = "", a = "", v = "";
         int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
-        boolean ocupacao, produto; 
+        boolean ocupacao, produto;
         Date tmpDate;
-        
+
         data = "# parametros \n"
                 + "param I:= 20; #Numero de posicoes na baia\n"
                 + "param J:= 2; #Numero de baias\n"
@@ -136,17 +155,18 @@ public class OtimizarAtualizarGestaoController {
                     setorPos++;
                     ocupacao = this.corredor.getSetores().get(setorPos).getEstado().isOcupado();
                     produto = this.corredor.getSetores().get(setorPos).getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
-                    if(ocupacao && produto){
+                    if (ocupacao && produto) {
                         tmpBin = 1;
                         tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
-                        tmpData = tmpDate.getYear()*10000 + tmpDate.getMonth()*100 + tmpDate.getDay();
+                        tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDay();
+                        this.quantidadeMax++;
                     } else {
                         tmpBin = 0;
                         tmpDate = null;
                         tmpData = 0;
                     }
-                    a += ""+i+j+k+" "+tmpBin+"\n";
-                    v += ""+i+j+k+" "+tmpData+"\n";
+                    a += "" + i + j + k + " " + tmpBin + "\n";
+                    v += "" + i + j + k + " " + tmpData + "\n";
                 }
             }
         }
@@ -245,6 +265,7 @@ public class OtimizarAtualizarGestaoController {
         this.z = encontraZ(StringLimpa);
         this.StringMatriz = limpaZ(StringLimpa);
 
+        gerarArmazem();
         //Despista algum erro na conversão
         if (this.z == -1 || this.StringMatriz.equals("")) {
             return false;
@@ -314,15 +335,17 @@ public class OtimizarAtualizarGestaoController {
     }
 
     public void aplicaArmazem() {
-        int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
+        int i = 0, j = 0, k = 0, setorPos = -1;
         Ocupacao estado;
         for (i = 0; i < 20; i++) {
             for (j = 0; j < 2; j++) {
                 for (k = 0; k < 3; k++) {
                     setorPos++;
-                    estado = this.corredor.getSetores().get(setorPos).getEstado();
-                    estado.setOcupado(false);
-                    estado.setProduto(null);
+                    if (armazem[i][j][k] == 1) {
+                        estado = this.corredor.getSetores().get(setorPos).getEstado();
+                        estado.setOcupado(false);
+                        estado.setProduto(null);
+                    }
                 }
             }
         }
