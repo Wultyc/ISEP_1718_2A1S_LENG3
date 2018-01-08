@@ -65,6 +65,15 @@ public class OtimizarAtualizarGestaoController {
         this.corredor = corredor;
         this.agv = agv;
         this.fnp = fnp;
+        this.quantidade = 0;
+        this.quantidadeMax = 0;
+        this.run = "";
+        this.model = "";
+        this.data = "";
+        this.respostaNEOS = "";
+        this.z = 0;
+        this.StringMatriz = "";
+        this.armazem = new int[20][2][3];
     }
 
     public Empresa getE() {
