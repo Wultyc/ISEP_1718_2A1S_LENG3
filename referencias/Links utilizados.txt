@@ -1,5 +1,0 @@
-https://neos-guide.org/content/java-developer-guide
-https://github.com/NEOS-Server/JavaClient/releases
-https://neos-server.org/neos/solvers/socp:Gurobi/AMPL-help.html
-https://neos-guide.org/content/NEOS-API
-https://neos-guide.org/content/java-client
