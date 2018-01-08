@@ -4,15 +4,15 @@ import model.Armazem;
 import model.CorredorArmazem;
 import model.Empresa;
 import model.EspacoArmazem;
-
+import model.Ocupacao;
 
 public class ListarOcupacaoController {
-    
+
     private Empresa e;
     private Armazem a;
     private EspacoArmazem areaLogica;
     private CorredorArmazem corredor;
-    
+
     public ListarOcupacaoController() {
         this.e = null;
         this.a = null;
@@ -34,7 +34,7 @@ public class ListarOcupacaoController {
     public void setEmpresa(Empresa e) {
         this.e = e;
     }
-    
+
     public Armazem getArmazem() {
         return a;
     }
@@ -58,6 +58,52 @@ public class ListarOcupacaoController {
     public void setCorredor(CorredorArmazem corredor) {
         this.corredor = corredor;
     }
-    
-}
 
+    public String getOcupacao() {
+        String armazem = "", c = "";
+        int setorPos = 0, i = 0, j = 0, k = 0;
+        Ocupacao o;
+
+        //Cabeçalho da imagem
+        armazem = "    Baia 1        Baia 2\n";
+        armazem += "     1 2 3         1 2 3";
+
+        for (i = 0; i < 20; i++) {
+
+            //Identificador da linha
+            if (i <= 9) {
+                armazem += "0" + i + " ";
+            } else {
+                armazem += i + " ";
+            }
+
+            for (j = 0; j < 2; j++) {
+
+                armazem += "| "; //Separador exterior da baía
+
+                for (k = 0; k < 3; k++) {
+                    setorPos++;
+                    o = corredor.getSetores().get(setorPos).getEstado();
+
+                    //Carater que indica a precença de um produto ou não
+                    if (o.isOcupado()) {
+                        c = "X";
+                    } else {
+                        c = " ";
+                    }
+                    armazem += c + " ";
+                }
+
+                //Finalizador de baía
+                if (j == 0) {
+                    armazem += "|  '  ";
+                } else {
+                    armazem += "|\n";
+                }
+
+            }
+        }
+
+        return armazem;
+    }
+}
