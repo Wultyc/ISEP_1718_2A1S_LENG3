@@ -58,4 +58,7 @@ public class PlantaArmazem {
     public List<CorredorArmazem> getCorredores() {
         return this.corredores;
     }
+    public List<EspacoArmazem> getAreasLogicas() {
+        return this.espacos;
+    }
 }

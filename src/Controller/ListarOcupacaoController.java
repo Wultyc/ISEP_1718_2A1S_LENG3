@@ -1,6 +1,5 @@
 package Controller;
 
-import java.util.List;
 import model.Armazem;
 import model.CorredorArmazem;
 import model.Empresa;
@@ -52,16 +51,10 @@ public class ListarOcupacaoController {
         this.areaLogica = areaLogica;
     }
 
-    /**
-     * @return the corredor
-     */
     public CorredorArmazem getCorredor() {
         return corredor;
     }
 
-    /**
-     * @param corredor the corredor to set
-     */
     public void setCorredor(CorredorArmazem corredor) {
         this.corredor = corredor;
     }

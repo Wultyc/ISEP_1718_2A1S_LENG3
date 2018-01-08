@@ -53,7 +53,7 @@ public class Empresa {
         ListaArmazens.get(0).addAGV(new AGV(new Date(12, 10, 2003), "KJ53", 8, 2, 100.0, 1.0, 0.5));
         
         //Entidade
-        ListaEntidades.add(new Entidade("ent1", "gitsubishi inc", "gitsubishi", "123456789", "Rua Dr. António Bernardino de Almeida, nº 431, 4200-072, Porto", "gitsubishi@gitsubishi.com", m_lstColaboradores.get(2)));
+        ListaEntidades.add(new Entidade("ent1", "Instituto Superior de Engenharia do Porto", "ISEP", "123456789", "Rua Dr. António Bernardino de Almeida, nº 431, 4200-072, Porto", "gitsubishi@gitsubishi.com", m_lstColaboradores.get(2)));
         
         //FNP
         ListaFNP.add(new FNP("FNP1", "leite a vaca feliz", "leite", "", "liquido",new Date(2018,02,05), 10));
