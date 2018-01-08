@@ -15,10 +15,10 @@ public class AGV {
         this.cat = new CatAGV();
     }
 
-    public AGV(Date dAquisicao, String nSerie, int autonomia, int tCarga, double pMax, double AlturaM) {
+    public AGV(Date dAquisicao, String nSerie, int autonomia, int tCarga, double pMax, double AlturaM, double velocidade) {
         this.dAquisicao = dAquisicao;
         this.nSerie = nSerie;
-        this.cat = new CatAGV(autonomia, tCarga, pMax, AlturaM);
+        this.cat = new CatAGV(autonomia, tCarga, pMax, AlturaM, velocidade);
     }
 
 
@@ -38,6 +38,27 @@ public class AGV {
 
     @Override
     public String toString() {
-        return dAquisicao.toString() + "\t" + nSerie + "\t" + cat.getDesig();
+        return getdAquisicao().toString() + "\t" + getnSerie() + "\t" + getCat().getDesig();
+    }
+
+    /**
+     * @return the dAquisicao
+     */
+    public Date getdAquisicao() {
+        return dAquisicao;
+    }
+
+    /**
+     * @return the nSerie
+     */
+    public String getnSerie() {
+        return nSerie;
+    }
+
+    /**
+     * @return the cat
+     */
+    public CatAGV getCat() {
+        return cat;
     }
 }

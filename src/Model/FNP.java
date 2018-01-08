@@ -12,6 +12,62 @@ import java.util.Date;
  * @author jorge
  */
 public class FNP {
+
+    /**
+     * @return the codEnt
+     */
+    public String getCodEnt() {
+        return codEnt;
+    }
+
+    /**
+     * @return the dComp
+     */
+    public String getdComp() {
+        return dComp;
+    }
+
+    /**
+     * @return the dBrv
+     */
+    public String getdBrv() {
+        return dBrv;
+    }
+
+    /**
+     * @return the classe
+     */
+    public String getClasse() {
+        return classe;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @return the dVal
+     */
+    public Date getdVal() {
+        return dVal;
+    }
+
+    /**
+     * @return the pMax
+     */
+    public float getpMax() {
+        return pMax;
+    }
+
+    /**
+     * @return the aprovacao
+     */
+    public AprovacaoFNP getAprovacao() {
+        return aprovacao;
+    }
     private String codEnt;
     private String dComp;
     private String dBrv;
@@ -72,8 +128,8 @@ public class FNP {
     }
     
     public void novaAprovacaoFNP(int aprovacao, String fundm){
-        this.aprovacao.setAprovacao(aprovacao);
-        this.aprovacao.setFundm(fundm);
+        this.getAprovacao().setAprovacao(aprovacao);
+        this.getAprovacao().setFundm(fundm);
     }
     
     public void validarAprovacaoFNP(AprovacaoFNP apr){
@@ -88,11 +144,11 @@ public class FNP {
     }
 
     public boolean isIdentifiableAs(String sCodigo) {
-        return this.codEnt.equals(sCodigo);
+        return this.getCodEnt().equals(sCodigo);
     }
 
     @Override
     public String toString() {
-        return "Descricao Breve" + this.dBrv+ "\nDescricao Completa: " + this.dComp+ "\nClasse: " + this.classe+ "\nEstado: " + this.estado+ "\nData de Validade: " + this.dVal.toString()+ "\nPeso Máximo por Europalete: " + this.pMax+ "Kg\n" + this.aprovacao.toString();
+        return "Descricao Breve" + this.getdBrv()+ "\nDescricao Completa: " + this.getdComp()+ "\nClasse: " + this.getClasse()+ "\nEstado: " + this.getEstado()+ "\nData de Validade: " + this.getdVal().toString()+ "\nPeso Máximo por Europalete: " + this.getpMax()+ "Kg\n" + this.getAprovacao().toString();
     }
 }

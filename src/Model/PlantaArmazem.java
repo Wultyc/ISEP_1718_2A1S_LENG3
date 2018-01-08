@@ -5,6 +5,13 @@ import java.util.List;
 
 
 public class PlantaArmazem {
+
+    /**
+     * @param corredores the corredores to set
+     */
+    public void setCorredores(List<CorredorArmazem> corredores) {
+        this.corredores = corredores;
+    }
     private int comprimento;
     private int largura;
     private int altura;

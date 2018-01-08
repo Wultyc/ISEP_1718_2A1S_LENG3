@@ -9,6 +9,7 @@ public class CatAGV {
     private int tCarga;
     private double pMax;
     private double AlturaM;
+    private double velocidade;
 
        
     public CatAGV(){
@@ -18,11 +19,12 @@ public class CatAGV {
         this.setAlturaM(0);
     }
     
-    public CatAGV(int autonomia, int tCarga, double pMax, double AlturaM){
+    public CatAGV(int autonomia, int tCarga, double pMax, double AlturaM, double velocidade){
         this.setAutonomia(autonomia);
         this.settCarga(tCarga);
         this.setpMax(pMax);
         this.setAlturaM(AlturaM);
+        this.setVelocidade(velocidade);
     }
 
 
@@ -53,6 +55,15 @@ public class CatAGV {
 
     public void setAlturaM(double AlturaM) {
         this.AlturaM = AlturaM;
+    }
+    
+    public void setVelocidade(double velocidade) {
+        this.velocidade = velocidade;
+    }
+
+
+    public double getVelocidade() {
+        return this.velocidade;
     }
 
     @Override
