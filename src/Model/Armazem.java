@@ -33,9 +33,17 @@ public class Armazem {
     public void setCodUn(String codUn) {
         this.codUn = codUn;
     }
+    
+    public String getCodUn() {
+        return codUn;
+    }
 
     public void setDescr(String descr) {
         this.descr = descr;
+    }
+
+    public String getDescr() {
+        return descr;
     }
 
     public void setEndPostal(String endPostalL1, String endPostalL2, int endPostal_cpCidade, int endPostal_cpRua) {

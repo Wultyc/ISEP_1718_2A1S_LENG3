@@ -1,5 +1,6 @@
 package Controller;
 
+import java.util.List;
 import model.Armazem;
 import model.CorredorArmazem;
 import model.Empresa;
@@ -38,6 +39,10 @@ public class ListarOcupacaoController {
     public Armazem getArmazem() {
         return a;
     }
+    
+    public List<Armazem> getListaArmazem() {
+        return e.getListaArmazens();
+    }
 
     public void setArmazem(Armazem a) {
         this.a = a;
@@ -51,6 +56,10 @@ public class ListarOcupacaoController {
         this.areaLogica = areaLogica;
     }
 
+    public List<EspacoArmazem> getListaAreasLogicas() {
+        return a.getPlanta().getAreasLogicas();
+    }
+    
     public CorredorArmazem getCorredor() {
         return corredor;
     }
@@ -58,7 +67,11 @@ public class ListarOcupacaoController {
     public void setCorredor(CorredorArmazem corredor) {
         this.corredor = corredor;
     }
-
+    
+    public List<CorredorArmazem> getListaCorredores() {
+        return a.getPlanta().getCorredores();
+    }
+    
     public String getOcupacao() {
         String armazem = "", c = "";
         int setorPos = 0, i = 0, j = 0, k = 0;
@@ -89,7 +102,7 @@ public class ListarOcupacaoController {
                     if (o.isOcupado()) {
                         c = "X";
                     } else {
-                        c = " ";
+                        c = "O";
                     }
                     armazem += c + " ";
                 }
