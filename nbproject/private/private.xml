@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/UserInterface/LENG3.java</file>
             <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/Model/Empresa.java</file>
-            <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/Controller/ListarOcupacaoController.java</file>
-            <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/Model/Armazem.java</file>
-            <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/Controller/OtimizarAtualizarGestaoController.java</file>
-            <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/Model/PlantaArmazem.java</file>
+            <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/UserInterface/ListarOcupacaoUI.java</file>
+            <file>file:/C:/Users/André/Documents/leng3_2017_grupo3/src/UserInterface/OtimizarAtualizarGestaoUI.java</file>
         </group>
     </open-files>
 </project-private>

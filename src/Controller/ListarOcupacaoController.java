@@ -85,9 +85,9 @@ public class ListarOcupacaoController {
 
             //Identificador da linha
             if (i <= 9) {
-                armazem += "0" + i + " ";
+                armazem += "0" + (i+1) + " ";
             } else {
-                armazem += i + " ";
+                armazem += (i+1) + " ";
             }
 
             for (j = 0; j < 2; j++) {

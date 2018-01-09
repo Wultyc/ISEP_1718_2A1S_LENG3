@@ -21,7 +21,7 @@ public class OtimizarAtualizarGestaoUI {
 
     Empresa e;
 
-    public void main(String[] args) {
+    public void main(Empresa e) {
 
         //Recebe o objeto da classe empresa
         this.e = e;
@@ -34,9 +34,9 @@ public class OtimizarAtualizarGestaoUI {
         List<Armazem> la;
         List<EspacoArmazem> al;
         List<CorredorArmazem> corr;
-        List<AGV> agv;
-        List<FNP> fnp;
-        int tamanhoLista = 0, i = 0, armazem = 0, areaLogica = 0, corredor = 0, qntPaletes = 0;
+        List<AGV> lagv;
+        List<FNP> lfnp;
+        int tamanhoLista = 0, i = 0, armazem = 0, areaLogica = 0, corredor = 0, fnp = 0, agv = 0, qntPaletes = 0;
         boolean confirmacao, valida;
 
         //Define a empresa
@@ -82,30 +82,30 @@ public class OtimizarAtualizarGestaoUI {
         controller.setCorredor(corr.get(corredor));
 
         //Listar AGV
-        agv = controller.getListaAGVs();
-        tamanhoLista = agv.size();
+        lagv = controller.getListaAGVs();
+        tamanhoLista = lagv.size();
         for (i = 0; i < tamanhoLista; i++) {
-            System.out.println(i + ") " + agv.get(i).toString());
+            System.out.println(i + ") " + lagv.get(i).toString());
         }
-        corredor = u.readIntFromConsole("Especifique Corredor: ");
+        agv = u.readIntFromConsole("Especifique AGV: ");
         while (corredor == -1) {
             System.out.println("Erro: Insira um valor válido");
-            corredor = u.readIntFromConsole("Especifique Corredor: ");
+            agv = u.readIntFromConsole("Especifique AGV: ");
         }
-        controller.setCorredor(corr.get(corredor));
+        controller.setAGV(lagv.get(agv));
 
         //Listar FNP
-        fnp = controller.getListaFnp();
-        tamanhoLista = fnp.size();
+        lfnp = controller.getListaFnp();
+        tamanhoLista = lfnp.size();
         for (i = 0; i < tamanhoLista; i++) {
-            System.out.println(i + ") " + fnp.get(i).getCodEnt() + ": " + fnp.get(i).getAprovacao() + "(" + fnp.get(i).getAprovacao() + ")");
+            System.out.println(i + ") " + lfnp.get(i).getCodEnt() + ": " + lfnp.get(i).getdComp() + "(" + lfnp.get(i).getAprovacao().getAprovacaoToString() + ")");
         }
-        corredor = u.readIntFromConsole("Especifique Corredor: ");
+        fnp = u.readIntFromConsole("Especifique FNP: ");
         while (corredor == -1) {
             System.out.println("Erro: Insira um valor válido");
-            corredor = u.readIntFromConsole("Especifique Corredor: ");
+            fnp = u.readIntFromConsole("Especifique FNP: ");
         }
-        controller.setCorredor(corr.get(corredor));
+        controller.setFnp(lfnp.get(fnp));
 
         //Define a quantidade
         qntPaletes = u.readIntFromConsole("Que quantidade de paletes pretende? ");

@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,8 +24,9 @@ public class PlantaArmazem {
         this.setComprimento(0);
         this.setLargura(0);
         this.setAltura(0);
-        this.pontosCargaDescarga = null;
-        this.espacos = null;
+        this.pontosCargaDescarga = new ArrayList<PontoCargaDescarga>();
+        this.espacos = new ArrayList<EspacoArmazem>();
+        this.corredores = new ArrayList<CorredorArmazem>();
     }
 
 

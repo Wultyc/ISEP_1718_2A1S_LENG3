@@ -88,7 +88,7 @@ public class FNP {
         this.aprovacao = new AprovacaoFNP();
     }
     
-    public FNP(String codEnt, String dComp, String dBrv, String classe, String estado, Date dVal, float pMax){
+    public FNP(String codEnt, String dComp, String dBrv, String classe, String estado, Date dVal, float pMax, AprovacaoFNP aprovacao){
         this.codEnt = codEnt;
         this.dComp = "";
         this.dBrv = "";
@@ -96,7 +96,7 @@ public class FNP {
         this.estado = "";
         this.dVal = new Date();
         this.pMax = 0;
-        this.aprovacao = new AprovacaoFNP();
+        this.aprovacao = aprovacao;
     }
 
     public void setCodEnt(String codEnt) {

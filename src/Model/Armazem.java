@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,6 +21,7 @@ public class Armazem {
         this.descr = null;
         this.endPostal = new EndPostal();
         this.coordGPS = new CoordGPS();
+        this.agvs = new ArrayList<>();
     }
     
 
@@ -28,6 +30,8 @@ public class Armazem {
         this.descr = descr;
         this.endPostal = new EndPostal(endPostalL1, endPostalL2, endPostal_cpCidade, endPostal_cpRua);
         this.coordGPS = new CoordGPS(latd, longt, altd);
+        this.coordGPS = new CoordGPS();
+        this.agvs = new ArrayList<>();
     }
 
     public void setCodUn(String codUn) {

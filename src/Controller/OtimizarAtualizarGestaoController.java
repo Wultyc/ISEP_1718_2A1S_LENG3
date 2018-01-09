@@ -153,7 +153,15 @@ public class OtimizarAtualizarGestaoController {
         this.quantidade = quantidade;
     }
     public String getResumo() {
-        return "";
+        String resumo = "================================================================================\n";
+        resumo += "Resumo da otimização:\n"
+                + "Armazem: " + a.getDescr() + "\n"
+                + "Area Lógica: " + areaLogica.toString() + "\n"
+                + "Corredor: " + corredor.toString() + "\n"
+                + "AGV: " + agv.toString() + "\n"
+                + "FNP: " + fnp.getCodEnt() + ": " + fnp.getdComp() + "(" + fnp.getAprovacao().getAprovacaoToString() + ")\n"
+                + "Quantidade de paletes pedidas: " + this.quantidade;
+        return resumo;
     }
 
     public boolean validaQuantidade() {
@@ -397,9 +405,9 @@ public class OtimizarAtualizarGestaoController {
 
             //Identificador da linha
             if (i <= 9) {
-                armazem += "0" + i + " ";
+                armazem += "0" + (i+1) + " ";
             } else {
-                armazem += i + " ";
+                armazem += (i+1) + " ";
             }
 
             for (j = 0; j < 2; j++) {
@@ -408,7 +416,6 @@ public class OtimizarAtualizarGestaoController {
 
                 for (k = 0; k < 3; k++) {
                     setorPos++;
-                    o = corredor.getSetores().get(setorPos).getEstado();
 
                     //Carater que indica a precença de um produto ou não
                     if (this.armazem[i][j][k] == 1) {

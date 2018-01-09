@@ -10,9 +10,9 @@ public class Setor {
         this.setEstado(new Ocupacao());
     }
 
-    public Setor(String desig) {
+    public Setor(String desig, Ocupacao estado) {
         this.setDesignacao(desig);
-        this.setEstado(new Ocupacao());
+        this.setEstado(estado);
     }
 
     public String getDesignacao() {

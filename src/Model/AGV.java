@@ -38,7 +38,7 @@ public class AGV {
 
     @Override
     public String toString() {
-        return getdAquisicao().toString() + "\t" + getnSerie() + "\t" + getCat().getDesig();
+        return getnSerie() + "\t" + getdAquisicao().toGMTString();
     }
 
     /**

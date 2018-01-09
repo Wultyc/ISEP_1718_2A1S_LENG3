@@ -26,6 +26,11 @@ public class Ocupacao {
         this.setProduto(null);
     }
 
+    public Ocupacao(boolean ocupado, FNP fnp){
+        this.setOcupado(ocupado);
+        this.setProduto(fnp);
+    }
+
 
     public boolean isOcupado() {
         return ocupado;

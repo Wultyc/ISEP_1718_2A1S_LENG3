@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,12 +19,14 @@ public class CorredorArmazem {
         pontoA = new PontoEspaco();
         pontoB = new PontoEspaco();
         this.setDesignacao(""); 
+        this.setores = new ArrayList<>();
     }
     
     public CorredorArmazem(String designacao, int xA, int yA, int zA, int xB, int yB, int zB){
         pontoA = new PontoEspaco(xA,yA,zA);
         pontoB = new PontoEspaco(xB,yB,zB);
         this.setDesignacao(designacao); 
+        this.setores = new ArrayList<>();
     }
 
 
