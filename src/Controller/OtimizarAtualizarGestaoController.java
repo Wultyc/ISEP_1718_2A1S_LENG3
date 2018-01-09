@@ -36,8 +36,8 @@ public class OtimizarAtualizarGestaoController {
     private String StringMatriz;
     private int[][][] armazem;
 
-    private final String caminhoRun = "modelo/LENG3.run";
-    private final String caminhoModel = "modelo/LENG3.mod";
+    private final String caminhoRun = "AMPL_LENG3.run";
+    private final String caminhoModel = "AMPL_LENG3.mod";
     private final String HOST = "neos-server.org";
     private final String PORT = "3333";
 
