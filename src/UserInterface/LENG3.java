@@ -30,8 +30,10 @@ public class LENG3 {
                 otimiza.main(e);
             }else if(resp.equalsIgnoreCase("L")){
                 lista.main(e);
-            }else{
+            }else if(resp.equalsIgnoreCase("F")){
                 System.out.println("Obrigado pela utlização");
+            }else{
+                System.out.println("Opção não reconhecida");
             }
         }
     }

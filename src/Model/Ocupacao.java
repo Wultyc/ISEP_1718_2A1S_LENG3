@@ -26,9 +26,10 @@ public class Ocupacao {
         this.setProduto(null);
     }
 
-    public Ocupacao(boolean ocupado, FNP fnp){
+    public Ocupacao(boolean ocupado, FNP fnp, Date data_hora){
         this.setOcupado(ocupado);
         this.setProduto(fnp);
+        this.setData_hora(data_hora);
     }
 
 

@@ -74,7 +74,7 @@ public class ListarOcupacaoController {
     
     public String getOcupacao() {
         String armazem = "", c = "";
-        int setorPos = 0, i = 0, j = 0, k = 0;
+        int setorPos = -1, i = 0, j = 0, k = 0;
         Ocupacao o;
 
         //Cabeçalho da imagem
@@ -102,7 +102,7 @@ public class ListarOcupacaoController {
                     if (o.isOcupado()) {
                         c = "X";
                     } else {
-                        c = " ";
+                        c = "O";
                     }
                     armazem += c + " ";
                 }

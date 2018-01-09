@@ -135,9 +135,9 @@ public class OtimizarAtualizarGestaoUI {
                 return;
             }
             controller.fazOtimizacao();
-            controller.getResultado();
+            System.out.println(controller.getResultado());;
 
-            confirmacao = u.readConfirmationFromConsole("Pretende continuar?");
+            confirmacao = u.readConfirmationFromConsole("Pretende aplicar ao armazem?");
             if (confirmacao) {
                 controller.aplicaArmazem();
                 System.out.println("Alterações aplicadas!");

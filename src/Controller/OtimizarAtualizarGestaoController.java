@@ -152,6 +152,7 @@ public class OtimizarAtualizarGestaoController {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
     public String getResumo() {
         String resumo = "";
         resumo += "Resumo da otimização:\n"
@@ -195,19 +196,22 @@ public class OtimizarAtualizarGestaoController {
                 for (k = 0; k < 3; k++) {
                     setorPos++;
                     ocupacao = this.corredor.getSetores().get(setorPos).getEstado().isOcupado();
-                    produto = this.corredor.getSetores().get(setorPos).getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
-                    if (ocupacao && produto) {
-                        tmpBin = 1;
-                        tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
-                        tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDay();
-                        this.quantidadeMax++;
+                    
+                    if (ocupacao) {
+                        produto = this.corredor.getSetores().get(setorPos).getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
+                        if (produto) {
+                            tmpBin = 1;
+                            tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
+                            tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDay();
+                            this.quantidadeMax++;
+                        }
                     } else {
                         tmpBin = 0;
                         tmpDate = null;
                         tmpData = 0;
                     }
-                    a += "" + i + j + k + " " + tmpBin + "\n";
-                    v += "" + i + j + k + " " + tmpData + "\n";
+                    a += "" + (i+1) + " " + (j+1) + " " + (k+1) + "\t" + tmpBin + "\n";
+                    v += "" + (i+1) + " " + (j+1) + " " + (k+1) + "\t" + tmpData + "\n";
                 }
             }
         }
@@ -225,11 +229,7 @@ public class OtimizarAtualizarGestaoController {
         this.model = u.loadTextFile(this.caminhoModel);
         this.run = u.loadTextFile(this.caminhoRun);
         this.data = genData();
-        if (validaQuantidade()) {
-            return true;
-        } else {
-            return false;
-        }
+        return validaQuantidade();
     }
 
     public boolean fazOtimizacao() {
@@ -391,7 +391,7 @@ public class OtimizarAtualizarGestaoController {
             }
         }
     }
-    
+
     public String getResultado() {
         String armazem = "", c = "";
         int setorPos = 0, i = 0, j = 0, k = 0;
@@ -399,15 +399,15 @@ public class OtimizarAtualizarGestaoController {
         armazem = "Tempo da tarefa: " + this.z + " segundo\n\n";
         //Cabeçalho da imagem
         armazem += "    Baia 1        Baia 2\n";
-        armazem += "     1 2 3         1 2 3";
+        armazem += "     1 2 3         1 2 3\n";
 
         for (i = 0; i < 20; i++) {
 
             //Identificador da linha
-            if (i <= 9) {
-                armazem += "0" + (i+1) + " ";
+            if (i < 9) {
+                armazem += "0" + (i + 1) + " ";
             } else {
-                armazem += (i+1) + " ";
+                armazem += (i + 1) + " ";
             }
 
             for (j = 0; j < 2; j++) {
