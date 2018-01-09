@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package UserInterface;
+
 import Controller.ListarOcupacaoController;
+import Controller.OtimizarAtualizarGestaoController;
 import java.util.List;
 import java.util.Scanner;
 import model.AGV;
@@ -15,11 +17,10 @@ import model.EspacoArmazem;
 import model.FNP;
 import utils.Utils;
 
-
 public class OtimizarAtualizarGestaoUI {
-    
-        Empresa e;
-    
+
+    Empresa e;
+
     public void main(String[] args) {
 
         //Recebe o objeto da classe empresa
@@ -27,16 +28,16 @@ public class OtimizarAtualizarGestaoUI {
 
         //Objetos de apoio
         Utils u = new Utils();
-        ListarOcupacaoController controller = new ListarOcupacaoController();
+        OtimizarAtualizarGestaoController controller = new OtimizarAtualizarGestaoController();
 
         //Registo de informação
         List<Armazem> la;
         List<EspacoArmazem> al;
         List<CorredorArmazem> corr;
         List<AGV> agv;
-        List<FNP> fnp; 
+        List<FNP> fnp;
         int tamanhoLista = 0, i = 0, armazem = 0, areaLogica = 0, corredor = 0, qntPaletes = 0;
-        boolean confirmacao;
+        boolean confirmacao, valida;
 
         //Define a empresa
         controller.setEmpresa(e);
@@ -66,7 +67,7 @@ public class OtimizarAtualizarGestaoUI {
             areaLogica = u.readIntFromConsole("Especifique Aréa Lógica: ");
         }
         controller.setAreaLogica(al.get(areaLogica));
-        
+
         //Listar Corredores
         corr = controller.getListaCorredores();
         tamanhoLista = corr.size();
@@ -79,12 +80,12 @@ public class OtimizarAtualizarGestaoUI {
             corredor = u.readIntFromConsole("Especifique Corredor: ");
         }
         controller.setCorredor(corr.get(corredor));
-        
+
         //Listar AGV
-        agv = controller.get;
-        tamanhoLista = corr.size();
+        agv = controller.getListaAGVs();
+        tamanhoLista = agv.size();
         for (i = 0; i < tamanhoLista; i++) {
-            System.out.println(i + ") " + corr.get(i).toString());
+            System.out.println(i + ") " + agv.get(i).toString());
         }
         corredor = u.readIntFromConsole("Especifique Corredor: ");
         while (corredor == -1) {
@@ -92,14 +93,44 @@ public class OtimizarAtualizarGestaoUI {
             corredor = u.readIntFromConsole("Especifique Corredor: ");
         }
         controller.setCorredor(corr.get(corredor));
-        
-        confirmacao = u.readConfirmationFromConsole("Pretende aplicar alterações?");
-        
-        if(confirmacao == true){
-            
+
+        //Listar FNP
+        fnp = controller.getListaFnp();
+        tamanhoLista = fnp.size();
+        for (i = 0; i < tamanhoLista; i++) {
+            System.out.println(i + ") " + fnp.get(i).getCodEnt() + ": " + fnp.get(i).getAprovacao() + "(" + fnp.get(i).getAprovacao() + ")");
         }
-        
+        corredor = u.readIntFromConsole("Especifique Corredor: ");
+        while (corredor == -1) {
+            System.out.println("Erro: Insira um valor válido");
+            corredor = u.readIntFromConsole("Especifique Corredor: ");
+        }
+        controller.setCorredor(corr.get(corredor));
+
+        //Define a quantidade
+        qntPaletes = u.readIntFromConsole("Que quantidade de paletes pretende? ");
+        controller.setQuantidade(qntPaletes);
+
+        System.out.println(controller.getResumo());
+
+        confirmacao = u.readConfirmationFromConsole("Pretende continuar?");
+
+        if (confirmacao == true) {
+            valida = controller.inciaOtimizacao();
+            if (!valida) {
+                System.out.println("Quantidade inválida!");
+                return;
+            }
+            controller.fazOtimizacao();
+            controller.getResultado();
+
+            confirmacao = u.readConfirmationFromConsole("Pretende continuar?");
+            if (confirmacao) {
+                controller.aplicaArmazem();
+                System.out.println("Alterações aplicadas!");
+            }
+
+        }
     }
-    
-    
+
 }

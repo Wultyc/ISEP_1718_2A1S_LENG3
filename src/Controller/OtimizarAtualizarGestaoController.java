@@ -141,7 +141,7 @@ public class OtimizarAtualizarGestaoController {
         this.fnp = fnp;
     }
 
-    public List<FNP> getFnps() {
+    public List<FNP> getListaFnp() {
         return e.getListaFNP();
     }
 
@@ -151,6 +151,9 @@ public class OtimizarAtualizarGestaoController {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+    public String getResumo() {
+        return "";
     }
 
     public boolean validaQuantidade() {
@@ -379,5 +382,53 @@ public class OtimizarAtualizarGestaoController {
                 }
             }
         }
+    }
+    
+    public String getResultado() {
+        String armazem = "", c = "";
+        int setorPos = 0, i = 0, j = 0, k = 0;
+        Ocupacao o;
+        armazem = "Tempo da tarefa: " + this.z + " segundo\n\n";
+        //Cabeçalho da imagem
+        armazem += "    Baia 1        Baia 2\n";
+        armazem += "     1 2 3         1 2 3";
+
+        for (i = 0; i < 20; i++) {
+
+            //Identificador da linha
+            if (i <= 9) {
+                armazem += "0" + i + " ";
+            } else {
+                armazem += i + " ";
+            }
+
+            for (j = 0; j < 2; j++) {
+
+                armazem += "| "; //Separador exterior da baía
+
+                for (k = 0; k < 3; k++) {
+                    setorPos++;
+                    o = corredor.getSetores().get(setorPos).getEstado();
+
+                    //Carater que indica a precença de um produto ou não
+                    if (this.armazem[i][j][k] == 1) {
+                        c = "X";
+                    } else {
+                        c = "O";
+                    }
+                    armazem += c + " ";
+                }
+
+                //Finalizador de baía
+                if (j == 0) {
+                    armazem += "|  '  ";
+                } else {
+                    armazem += "|\n";
+                }
+
+            }
+        }
+
+        return armazem;
     }
 }
