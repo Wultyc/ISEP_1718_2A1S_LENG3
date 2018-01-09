@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 import jdk.nashorn.internal.codegen.CompilerConstants;
 import model.AGV;
@@ -76,20 +77,24 @@ public class OtimizarAtualizarGestaoController {
         this.armazem = new int[20][2][3];
     }
 
-    public Empresa getE() {
+    public Empresa getEmpresa() {
         return e;
     }
 
-    public void setE(Empresa e) {
+    public void setEmpresa(Empresa e) {
         this.e = e;
     }
 
-    public Armazem getA() {
+    public Armazem getArmazem() {
         return a;
     }
 
-    public void setA(Armazem a) {
+    public void setArmazem(Armazem a) {
         this.a = a;
+    }
+
+    public List<Armazem> getListaArmazem() {
+        return e.getListaArmazens();
     }
 
     public EspacoArmazem getAreaLogica() {
@@ -100,12 +105,20 @@ public class OtimizarAtualizarGestaoController {
         this.areaLogica = areaLogica;
     }
 
+    public List<EspacoArmazem> getListaAreasLogicas() {
+        return a.getPlanta().getAreasLogicas();
+    }
+
     public CorredorArmazem getCorredor() {
         return corredor;
     }
 
     public void setCorredor(CorredorArmazem corredor) {
         this.corredor = corredor;
+    }
+
+    public List<CorredorArmazem> getListaCorredores() {
+        return a.getPlanta().getCorredores();
     }
 
     public AGV getAGV() {
@@ -116,12 +129,20 @@ public class OtimizarAtualizarGestaoController {
         this.agv = agv;
     }
 
+    public List<AGV> getListaAGVs() {
+        return a.getAGVs();
+    }
+
     public FNP getFnp() {
         return fnp;
     }
 
     public void setFnp(FNP fnp) {
         this.fnp = fnp;
+    }
+
+    public List<FNP> getFnps() {
+        return e.getListaFNP();
     }
 
     public int getQuantidade() {

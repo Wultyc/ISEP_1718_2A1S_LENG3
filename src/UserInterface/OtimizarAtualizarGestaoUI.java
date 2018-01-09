@@ -80,6 +80,19 @@ public class OtimizarAtualizarGestaoUI {
         }
         controller.setCorredor(corr.get(corredor));
         
+        //Listar AGV
+        agv = controller.get;
+        tamanhoLista = corr.size();
+        for (i = 0; i < tamanhoLista; i++) {
+            System.out.println(i + ") " + corr.get(i).toString());
+        }
+        corredor = u.readIntFromConsole("Especifique Corredor: ");
+        while (corredor == -1) {
+            System.out.println("Erro: Insira um valor válido");
+            corredor = u.readIntFromConsole("Especifique Corredor: ");
+        }
+        controller.setCorredor(corr.get(corredor));
+        
         confirmacao = u.readConfirmationFromConsole("Pretende aplicar alterações?");
         
         if(confirmacao == true){
