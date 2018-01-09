@@ -59,13 +59,13 @@ public class Utils {
             BufferedReader in = new BufferedReader(converter);
 
             resposta = in.readLine();
-            
-            if(resposta.equalsIgnoreCase("S")){
+
+            if (resposta.equalsIgnoreCase("S")) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -88,51 +88,13 @@ public class Utils {
         } while (true);
     }
 
-    static public Object apresentaESeleciona(List list, String sHeader) {
-        apresentaLista(list, sHeader);
-        return selecionaObject(list);
-    }
-
-    static public void apresentaLista(List list, String sHeader) {
-        System.out.println(sHeader);
-
-        int index = 0;
-        for (Object o : list) {
-            index++;
-
-            System.out.println(index + ". " + o.toString());
+    static public void imprimeSeparador() {
+        String s = "";
+        int tamanho = 80, i = 0;
+        for (i = 0; i < tamanho; i++) {
+            s += "=";
         }
-        System.out.println("");
-        System.out.println("0 - Cancelar");
-    }
-
-    static public Object selecionaObject(List list) {
-        String opcao;
-        int nOpcao;
-        do {
-            nOpcao = Utils.IntFromConsole("Introduza opção: ");
-
-        } while (nOpcao < 0 || nOpcao > list.size());
-
-        if (nOpcao == 0) {
-            return null;
-        } else {
-            return list.get(nOpcao - 1);
-        }
-    }
-
-    public static int IntFromConsole(String strPrompt) {
-        do {
-            try {
-                String strInt = readLineFromConsole(strPrompt);
-
-                int iInt = Integer.parseInt(strInt);
-
-                return iInt;
-            } catch (NumberFormatException ex) {
-                //Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } while (true);
+        System.out.println(s);
     }
 
     public static String loadTextFile(String filename) {

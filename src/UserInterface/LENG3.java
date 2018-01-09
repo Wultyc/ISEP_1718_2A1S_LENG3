@@ -18,6 +18,7 @@ public class LENG3 {
         String resp = "";
         
         while(!resp.equalsIgnoreCase("F")){
+            u.imprimeSeparador();
             System.out.println("Bem-vindo\n"
                 + "Menu:\n"
                 + "N) Nova Otimização\n"

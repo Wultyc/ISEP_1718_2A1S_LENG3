@@ -38,6 +38,8 @@ public class ListarOcupacaoUI {
         //Listar armazens
         la = controller.getListaArmazem();
         tamanhoLista = la.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de Armazens");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + la.get(i).getCodUn() + ": " + la.get(i).getDescr());
         }
@@ -51,6 +53,8 @@ public class ListarOcupacaoUI {
         //Listar Areas Logicas
         al = controller.getListaAreasLogicas();
         tamanhoLista = al.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de Areas Logicas");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + al.get(i).toString());
         }
@@ -64,6 +68,8 @@ public class ListarOcupacaoUI {
         //Listar Corredores
         corr = controller.getListaCorredores();
         tamanhoLista = corr.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de Corredores");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + corr.get(i).toString());
         }

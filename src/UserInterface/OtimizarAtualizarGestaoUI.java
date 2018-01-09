@@ -45,6 +45,8 @@ public class OtimizarAtualizarGestaoUI {
         //Listar armazens
         la = controller.getListaArmazem();
         tamanhoLista = la.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de Armazens");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + la.get(i).getCodUn() + ": " + la.get(i).getDescr());
         }
@@ -58,6 +60,8 @@ public class OtimizarAtualizarGestaoUI {
         //Listar Areas Logicas
         al = controller.getListaAreasLogicas();
         tamanhoLista = al.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de Areas Logicas");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + al.get(i).toString());
         }
@@ -71,6 +75,8 @@ public class OtimizarAtualizarGestaoUI {
         //Listar Corredores
         corr = controller.getListaCorredores();
         tamanhoLista = corr.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de Corredores");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + corr.get(i).toString());
         }
@@ -84,6 +90,8 @@ public class OtimizarAtualizarGestaoUI {
         //Listar AGV
         lagv = controller.getListaAGVs();
         tamanhoLista = lagv.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de AGVs");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + lagv.get(i).toString());
         }
@@ -97,6 +105,8 @@ public class OtimizarAtualizarGestaoUI {
         //Listar FNP
         lfnp = controller.getListaFnp();
         tamanhoLista = lfnp.size();
+        u.imprimeSeparador();
+        System.out.println("Lista de FNPs");
         for (i = 0; i < tamanhoLista; i++) {
             System.out.println(i + ") " + lfnp.get(i).getCodEnt() + ": " + lfnp.get(i).getdComp() + "(" + lfnp.get(i).getAprovacao().getAprovacaoToString() + ")");
         }
@@ -108,11 +118,14 @@ public class OtimizarAtualizarGestaoUI {
         controller.setFnp(lfnp.get(fnp));
 
         //Define a quantidade
+        u.imprimeSeparador();
         qntPaletes = u.readIntFromConsole("Que quantidade de paletes pretende? ");
         controller.setQuantidade(qntPaletes);
-
+        
+        u.imprimeSeparador();
         System.out.println(controller.getResumo());
 
+        u.imprimeSeparador();
         confirmacao = u.readConfirmationFromConsole("Pretende continuar?");
 
         if (confirmacao == true) {

@@ -153,7 +153,7 @@ public class OtimizarAtualizarGestaoController {
         this.quantidade = quantidade;
     }
     public String getResumo() {
-        String resumo = "================================================================================\n";
+        String resumo = "";
         resumo += "Resumo da otimização:\n"
                 + "Armazem: " + a.getDescr() + "\n"
                 + "Area Lógica: " + areaLogica.toString() + "\n"

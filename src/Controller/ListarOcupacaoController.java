@@ -79,12 +79,12 @@ public class ListarOcupacaoController {
 
         //Cabeçalho da imagem
         armazem = "    Baia 1        Baia 2\n";
-        armazem += "     1 2 3         1 2 3";
+        armazem += "     1 2 3         1 2 3\n";
 
         for (i = 0; i < 20; i++) {
 
             //Identificador da linha
-            if (i <= 9) {
+            if (i < 9) {
                 armazem += "0" + (i+1) + " ";
             } else {
                 armazem += (i+1) + " ";
@@ -102,7 +102,7 @@ public class ListarOcupacaoController {
                     if (o.isOcupado()) {
                         c = "X";
                     } else {
-                        c = "O";
+                        c = " ";
                     }
                     armazem += c + " ";
                 }
