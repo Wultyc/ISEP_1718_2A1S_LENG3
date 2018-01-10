@@ -36,6 +36,8 @@ public class OtimizarAtualizarGestaoController {
     private int z;
     private String StringMatriz;
     private int[][][] armazem;
+    private boolean recolha;
+    private FNP produtofinal;
 
     private final String caminhoRun = "AMPL_LENG3.run";
     private final String caminhoModel = "AMPL_LENG3.mod";
@@ -60,7 +62,7 @@ public class OtimizarAtualizarGestaoController {
         this.armazem = new int[20][2][3];
     }
 
-    public OtimizarAtualizarGestaoController(Empresa e, Armazem a, EspacoArmazem areaLogica, CorredorArmazem corredor, AGV agv, FNP fnp) {
+    public OtimizarAtualizarGestaoController(Empresa e, Armazem a, EspacoArmazem areaLogica, CorredorArmazem corredor, AGV agv, FNP fnp, boolean recolha) {
         this.e = e;
         this.a = a;
         this.areaLogica = areaLogica;
@@ -76,6 +78,7 @@ public class OtimizarAtualizarGestaoController {
         this.z = 0;
         this.StringMatriz = "";
         this.armazem = new int[20][2][3];
+        this.recolha = recolha;
     }
 
     public Empresa getEmpresa() {
@@ -140,6 +143,11 @@ public class OtimizarAtualizarGestaoController {
 
     public void setFnp(FNP fnp) {
         this.fnp = fnp;
+        if (this.recolha) {
+            this.produtofinal = null;
+        } else {
+            this.produtofinal = this.fnp;
+        }
     }
 
     public List<FNP> getListaFnp() {
@@ -154,6 +162,22 @@ public class OtimizarAtualizarGestaoController {
         this.quantidade = quantidade;
     }
 
+    public boolean isRecolha() {
+        return recolha;
+    }
+
+    public String getRecolha() {
+        if (recolha) {
+            return "Recolha";
+        } else {
+            return "Entrega";
+        }
+    }
+
+    public void setRecolha(boolean recolha) {
+        this.recolha = recolha;
+    }
+
     public String getResumo() {
         String resumo = "";
         resumo += "Resumo da otimização:\n"
@@ -161,7 +185,8 @@ public class OtimizarAtualizarGestaoController {
                 + "Area Lógica: " + areaLogica.toString() + "\n"
                 + "Corredor: " + corredor.toString() + "\n"
                 + "AGV: " + agv.toString() + "\n"
-                + "FNP: " + fnp.getCodEnt() + ": " + fnp.getdComp() + "(" + fnp.getAprovacao().getAprovacaoToString() + ")\n"
+                + "FNP: " + fnp.getCodEnt() + ": " + fnp.getdBrv() + "(" + fnp.getAprovacao().getAprovacaoToString() + ")\n"
+                + "Tipo: " + getRecolha() + "\n"
                 + "Quantidade de paletes pedidas: " + this.quantidade;
         return resumo;
     }
@@ -177,7 +202,7 @@ public class OtimizarAtualizarGestaoController {
     public String genData() {
         String data = "", a = "", v = "";
         int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
-        boolean ocupacao, produto;
+        boolean ocupado, produtoEscolhido;
         Date tmpDate;
         Setor s;
 
@@ -198,26 +223,33 @@ public class OtimizarAtualizarGestaoController {
                 for (k = 0; k < 3; k++) {
                     setorPos++;
                     s = this.corredor.getSetores().get(setorPos);
-                    ocupacao = s.getEstado().isOcupado();
-
-                    if (ocupacao) {
-                        produto = s.getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
-                        if (produto) {
-                            tmpBin = 1;
+                    ocupado = s.getEstado().isOcupado();
+                    //Obtem os dados para a String
+                    if (ocupado) {
+                        produtoEscolhido = s.getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
+                        if (produtoEscolhido) {
                             tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
                             tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDay();
-                            this.quantidadeMax++;
-
                         } else {
-                            tmpBin = 0;
-                            tmpDate = null;
                             tmpData = 0;
                         }
                     } else {
-                            tmpBin = 0;
-                            tmpDate = null;
-                            tmpData = 0;
-                        }
+                        produtoEscolhido = false;
+                        tmpData = 0;
+                    }
+
+                    if (this.recolha == true && ocupado == true && produtoEscolhido == true) {
+                        tmpBin = 1;
+                        this.quantidadeMax++;
+                    } else if (this.recolha == false && ocupado == false) {
+                        tmpBin = 1;
+                        tmpData = 1;
+                        this.quantidadeMax++;
+                    } else {
+                        tmpBin = 0;
+                        tmpData = 0;
+                    }
+
                     a += "" + (i + 1) + " " + (j + 1) + " " + (k + 1) + "\t" + tmpBin + "\n";
                     v += "" + (i + 1) + " " + (j + 1) + " " + (k + 1) + "\t" + tmpData + "\n";
                 }
@@ -392,8 +424,8 @@ public class OtimizarAtualizarGestaoController {
                     setorPos++;
                     if (armazem[i][j][k] == 1) {
                         estado = this.corredor.getSetores().get(setorPos).getEstado();
-                        estado.setOcupado(false);
-                        estado.setProduto(null);
+                        estado.setOcupado(!this.recolha);
+                        estado.setProduto(this.produtofinal);
                     }
                 }
             }

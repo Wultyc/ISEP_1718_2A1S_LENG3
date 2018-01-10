@@ -37,7 +37,7 @@ public class OtimizarAtualizarGestaoUI {
         List<AGV> lagv;
         List<FNP> lfnp;
         int tamanhoLista = 0, i = 0, armazem = 0, areaLogica = 0, corredor = 0, fnp = 0, agv = 0, qntPaletes = 0;
-        boolean confirmacao, valida;
+        boolean confirmacao, valida, recolha;
 
         //Define a empresa
         controller.setEmpresa(e);
@@ -101,7 +101,12 @@ public class OtimizarAtualizarGestaoUI {
             agv = u.readIntFromConsole("Especifique AGV: ");
         }
         controller.setAGV(lagv.get(agv));
-
+        
+        //Tipo de movimentação
+        u.imprimeSeparador();
+        recolha = u.readConfirmationFromConsole("E uma Recolha? ");
+        controller.setRecolha(recolha);
+        
         //Listar FNP
         lfnp = controller.getListaFnp();
         tamanhoLista = lfnp.size();
