@@ -269,13 +269,12 @@ public class OtimizarAtualizarGestaoController {
         this.model = u.loadTextFile(this.caminhoModel);
         this.run = u.loadTextFile(this.caminhoRun);
         this.data = genData();
-        System.out.println(data);
         return validaQuantidade();
     }
 
     public boolean fazOtimizacao() {
-        String resolucao;
-        int inicioResolucao;
+        String resolucao = "";
+        int inicioResolucao = 0;
         boolean feedbackNEOS, feedbackIntrepetacao;
 
         feedbackNEOS = otimiza(); //Envia o trabalho para o servidor NEOS
