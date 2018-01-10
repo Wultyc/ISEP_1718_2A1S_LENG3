@@ -203,8 +203,8 @@ public class OtimizarAtualizarGestaoController {
         String data = "", a = "", v = "";
         int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
         boolean ocupado, produtoEscolhido;
-        Date tmpDate;
-        Setor s;
+        Date tmpDate = null;
+        Setor s = null;
 
         data = "# parametros \n"
                 + "param I:= 20; #Numero de posicoes na baia\n"
@@ -229,7 +229,7 @@ public class OtimizarAtualizarGestaoController {
                         produtoEscolhido = s.getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
                         if (produtoEscolhido) {
                             tmpDate = s.getEstado().getData_hora();
-                            tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDate();
+                            tmpData = (tmpDate.getYear() - 2000) * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDate();
                         } else {
                             tmpData = 0;
                         }
@@ -269,6 +269,7 @@ public class OtimizarAtualizarGestaoController {
         this.model = u.loadTextFile(this.caminhoModel);
         this.run = u.loadTextFile(this.caminhoRun);
         this.data = genData();
+        System.out.println(data);
         return validaQuantidade();
     }
 
@@ -426,7 +427,7 @@ public class OtimizarAtualizarGestaoController {
                         estado = this.corredor.getSetores().get(setorPos).getEstado();
                         estado.setOcupado(!this.recolha);
                         estado.setProduto(this.produtofinal);
-                        if(!this.recolha){
+                        if (!this.recolha) {
                             estado.setData_hora(new Date());
                             System.out.println("data adicionada");
                         }
