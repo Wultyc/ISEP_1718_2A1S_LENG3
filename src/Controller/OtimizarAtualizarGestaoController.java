@@ -12,6 +12,7 @@ import model.EspacoArmazem;
 import model.FNP;
 import model.Ocupacao;
 import model.PlantaArmazem;
+import model.Setor;
 import org.apache.xmlrpc.XmlRpcException;
 import org.neos.client.NeosJobXml;
 import org.neos.client.NeosXmlRpcClient;
@@ -178,6 +179,7 @@ public class OtimizarAtualizarGestaoController {
         int i = 0, j = 0, k = 0, setorPos = -1, tmpData = 0, tmpBin = 0;
         boolean ocupacao, produto;
         Date tmpDate;
+        Setor s;
 
         data = "# parametros \n"
                 + "param I:= 20; #Numero de posicoes na baia\n"
@@ -195,23 +197,29 @@ public class OtimizarAtualizarGestaoController {
             for (j = 0; j < 2; j++) {
                 for (k = 0; k < 3; k++) {
                     setorPos++;
-                    ocupacao = this.corredor.getSetores().get(setorPos).getEstado().isOcupado();
-                    
+                    s = this.corredor.getSetores().get(setorPos);
+                    ocupacao = s.getEstado().isOcupado();
+
                     if (ocupacao) {
-                        produto = this.corredor.getSetores().get(setorPos).getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
+                        produto = s.getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
                         if (produto) {
                             tmpBin = 1;
                             tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
                             tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDay();
                             this.quantidadeMax++;
+
+                        } else {
+                            tmpBin = 0;
+                            tmpDate = null;
+                            tmpData = 0;
                         }
                     } else {
-                        tmpBin = 0;
-                        tmpDate = null;
-                        tmpData = 0;
-                    }
-                    a += "" + (i+1) + " " + (j+1) + " " + (k+1) + "\t" + tmpBin + "\n";
-                    v += "" + (i+1) + " " + (j+1) + " " + (k+1) + "\t" + tmpData + "\n";
+                            tmpBin = 0;
+                            tmpDate = null;
+                            tmpData = 0;
+                        }
+                    a += "" + (i + 1) + " " + (j + 1) + " " + (k + 1) + "\t" + tmpBin + "\n";
+                    v += "" + (i + 1) + " " + (j + 1) + " " + (k + 1) + "\t" + tmpData + "\n";
                 }
             }
         }
