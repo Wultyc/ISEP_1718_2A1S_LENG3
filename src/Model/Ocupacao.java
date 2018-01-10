@@ -3,24 +3,19 @@ package model;
 import java.util.Date;
 
 public class Ocupacao {
-
-    /**
-     * @return the data_hora
-     */
-    public Date getData_hora() {
-        return data_hora;
-    }
-
-    /**
-     * @param data_hora the data_hora to set
-     */
-    public void setData_hora(Date data_hora) {
-        this.data_hora = data_hora;
-    }
+    
     private boolean ocupado;
     private FNP produto;
     private Date data_hora;
 
+    public Date getData_hora() {
+        return data_hora;
+    }
+
+    public void setData_hora(Date data_hora) {
+        this.data_hora = data_hora;
+    }
+    
     public Ocupacao(){
         this.setOcupado(false);
         this.setProduto(null);

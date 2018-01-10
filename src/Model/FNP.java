@@ -90,10 +90,10 @@ public class FNP {
     
     public FNP(String codEnt, String dComp, String dBrv, String classe, String estado, Date dVal, float pMax, AprovacaoFNP aprovacao){
         this.codEnt = codEnt;
-        this.dComp = "";
-        this.dBrv = "";
-        this.classe = "";
-        this.estado = "";
+        this.dComp = dComp;
+        this.dBrv = dBrv;
+        this.classe = classe;
+        this.estado = estado;
         this.dVal = new Date();
         this.pMax = 0;
         this.aprovacao = aprovacao;

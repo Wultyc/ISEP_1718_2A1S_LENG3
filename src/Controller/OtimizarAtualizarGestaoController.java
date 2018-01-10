@@ -228,8 +228,8 @@ public class OtimizarAtualizarGestaoController {
                     if (ocupado) {
                         produtoEscolhido = s.getEstado().getProduto().isIdentifiableAs(fnp.getCodEnt());
                         if (produtoEscolhido) {
-                            tmpDate = this.corredor.getSetores().get(setorPos).getEstado().getData_hora();
-                            tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDay();
+                            tmpDate = s.getEstado().getData_hora();
+                            tmpData = tmpDate.getYear() * 10000 + tmpDate.getMonth() * 100 + tmpDate.getDate();
                         } else {
                             tmpData = 0;
                         }
@@ -428,6 +428,7 @@ public class OtimizarAtualizarGestaoController {
                         estado.setProduto(this.produtofinal);
                         if(!this.recolha){
                             estado.setData_hora(new Date());
+                            System.out.println("data adicionada");
                         }
                     }
                 }
