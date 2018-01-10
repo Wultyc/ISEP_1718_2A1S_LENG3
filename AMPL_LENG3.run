@@ -7,7 +7,7 @@ expand;
 solve;
 display N;
 display A;
-display V;
+display v;
 
 # resultados obtidos
 print 'InicioResultadoLENG3'; #String indicativa do Inicio da Informacao do resultado

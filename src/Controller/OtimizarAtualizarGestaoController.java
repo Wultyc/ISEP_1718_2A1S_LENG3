@@ -426,6 +426,9 @@ public class OtimizarAtualizarGestaoController {
                         estado = this.corredor.getSetores().get(setorPos).getEstado();
                         estado.setOcupado(!this.recolha);
                         estado.setProduto(this.produtofinal);
+                        if(!this.recolha){
+                            estado.setData_hora(new Date());
+                        }
                     }
                 }
             }
